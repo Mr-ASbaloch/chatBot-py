@@ -4,18 +4,17 @@ from tkinter import *
 
 bot = ChatBot("My Bot")
 
-# convo = [
-#     'hi ?',
-#     'hi there',
-#     'what is your name ?',
-#     'my name is abdul saeed',
-#     'how are you ',
-#     'where you live ?',
-#     'i live in pakistan'
-#
-# ]
-# trainer = ListTrainer(bot)
-# trainer.train(convo)
+convo = [
+    'hi ?',
+    'hi there',
+    'what is your name ?',
+    'my name is abdul saeed',
+    'where you live ?',
+    'i live in pakistan'
+
+]
+trainer = ListTrainer(bot)
+trainer.train(convo)
 # answer = bot.get_response("where you live")
 # print(answer)
 
@@ -37,7 +36,7 @@ bot = ChatBot("My Bot")
 # main.mainloop()
 
 main = Tk()
-main.geometry("500x500")
+main.geometry("500x600")
 main.title("MY Chat Bot")
 
 # Load the image
@@ -55,4 +54,31 @@ img = img.subsample(int(resize_factor))
 photoL = Label(main, image=img)
 photoL.pack(pady=10)
 
+# function call
+def ask_from_bot() :
+   query = textF.get()
+   answer =  bot.get_response(query)
+   msgs.insert(END, "You: " + query)
+   msgs.insert(END, "Bot :" + str(answer))
+   textF.delete(0,END)
+
+frame = Frame(main)
+sc = Scrollbar(frame)
+msgs = Listbox(frame,width=80,height=20)
+sc.pack(side=RIGHT,fill=Y)
+msgs.pack(side=LEFT,fill=BOTH,pady=10)
+frame.pack()
+
+# text file
+
+textF = Entry(main, font=("poppins", 13))
+textF.pack(fill=X ,pady=20,padx=20)
+
+
+# btn = Button(main, text="what`s your query ", font=("Verdana", 10))
+# btn.pack()
+
+btn = Button(main, text="What's your query", font=("bold italic", 12),command=ask_from_bot)
+btn.configure(bg="blue", fg="white" )
+btn.pack()
 main.mainloop()
