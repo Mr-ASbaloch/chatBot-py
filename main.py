@@ -40,7 +40,7 @@ main.geometry("500x600")
 main.title("MY Chat Bot")
 
 # Load the image
-img = PhotoImage(file="download (11).png")
+img = PhotoImage(file="download__11_-removebg-preview.png")
 
 # Calculate the desired width
 desired_width = 600
