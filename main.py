@@ -2,11 +2,13 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from tkinter import *
 import pyttsx3 as pp
+import speech_recognition as s
+import threading 
 engine =pp.init()
 
 voices = engine.getProperty("voices")
 print ("voices")
-engine.setProperty("voice", voices[0].id)
+engine.setProperty("voice", voices[1].id)
 
 def speak(word):
  engine.say(word)
@@ -16,13 +18,19 @@ bot = ChatBot("My Bot")
 
 convo = (
     'hi ?',
-    'hi there',
+    'hi there,im chatbot app for your help',
     'what is your name ?',
     'my name is chatBot',
     'where you live ?',
     'i live in pakistan '
     'what you can help me?',
-    'i can help you according to my dataset '
+    'i can help you according to my dataset ',
+    'what you think ?',
+    'i always think about my dataset',
+    'tell me your self ?',
+    'i have develop to help you'
+
+
 
 )
 trainer = ListTrainer(bot)
@@ -66,6 +74,25 @@ img = img.subsample(int(resize_factor))
 photoL = Label(main, image=img)
 photoL.pack(pady=10)
 
+# function for voce query 
+def takeQuery():
+ sr=s.Recognizer()
+ sr.pause_threshold = 1
+ with s.Microphone( ) as m:
+   try:
+     audio=sr.listen(m)
+     query =sr.recognize_google(audio,language='eng-in')
+     print(query)
+     textF.delete(0,END)
+     textF.insert(0,query)
+     ask_from_bot()
+   except Exception as e:
+    print(e)
+    print("not recognized ")
+     
+   
+ 
+
 # function call
 def ask_from_bot() :
    query = textF.get()
@@ -100,4 +127,11 @@ btn.pack()
 def enter_query(event):
    btn.invoke()
 main.bind('<Return>',enter_query)
+
+def repeatL():
+  while True:
+    takeQuery()
+
+t=threading.Thread(target=takeQuery)
+t.start()
 main.mainloop()
