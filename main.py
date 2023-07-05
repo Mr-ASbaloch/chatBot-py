@@ -1,6 +1,16 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from tkinter import *
+import pyttsx3 as pp
+engine =pp.init()
+
+voices = engine.getProperty("voices")
+print ("voices")
+engine.setProperty("voice", voices[0].id)
+
+def speak(word):
+ engine.say(word)
+ engine.runAndWait()
 
 bot = ChatBot("My Bot")
 
@@ -59,9 +69,10 @@ photoL.pack(pady=10)
 # function call
 def ask_from_bot() :
    query = textF.get()
-   answer =  bot.get_response(query)
+   answer = bot.get_response(query)
    msgs.insert(END, "You: " + query)
    msgs.insert(END, "Bot :" + str(answer))
+   speak(answer)
    textF.delete(0,END)
    msgs.yview(END)
 
