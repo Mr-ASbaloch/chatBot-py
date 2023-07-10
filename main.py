@@ -67,7 +67,7 @@ convo = (
     'I don\'t have real-time information. You can check the time on your device or search for it online.',
     'Thank you for your help!',
     'You\'re welcome! I\'m here to assist you anytime.',
-    'How can I improve my programming skills?',
+    'How can I improve my   programming skills?',
     'Improving programming skills requires practice and learning. You can try building projects, solving coding challenges, and studying from reliable resources.',
     'What are the latest technological advancements?',
     'There are many exciting technological advancements happening, such as artificial intelligence, blockchain, virtual reality, and more. It\'s a rapidly evolving field.',
